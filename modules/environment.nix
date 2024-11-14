@@ -23,6 +23,24 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
-  # OpenTabletDriver
+  # Opentabletdriver
   hardware.opentabletdriver.enable = true;
+
+  # Dconf values logic
+  system.activationScripts.dconfSetup = {
+    text = let
+      dconfSettings = ''
+        # Disable legacy tray for AppIndicator extension / XWayland fix
+
+        dconf write /org/gnome/shell/extensions/appindicator/legacy-tray-enabled false
+      '';
+    in ''
+      for user in /home/*; do
+        if [ -d "$user" ]; then
+          echo "${dconfSettings}" > "$user/.xprofile"
+          chown $(basename "$user") "$user/.xprofile"
+        fi
+      done
+    '';
+  };
 }
