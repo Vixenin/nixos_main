@@ -37,7 +37,7 @@
     obs-studio
 
     # Games
-    wine
+    wineWowPackages.stable
     bottles
     gamemode
     gamescope
