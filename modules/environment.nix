@@ -30,15 +30,18 @@
   system.activationScripts.dconfSetup = {
     text = let
       dconfSettings = ''
-        # Disable legacy tray for AppIndicator extension / XWayland fix
-
+        # Disable legacy tray for AppIndicator extension / xwayland fix
         dconf write /org/gnome/shell/extensions/appindicator/legacy-tray-enabled false
+
+        # Disable gnome tablet input management / opentabletdriver mapping fix
+        dconf write /org/gnome/settings-daemon/plugins/peripherals/tablets/active false
       '';
     in ''
       for user in /home/*; do
         if [ -d "$user" ]; then
-          echo "${dconfSettings}" > "$user/.xprofile"
-          chown $(basename "$user") "$user/.xprofile"
+          mkdir -p "$user/.config/dconf"
+          echo "${dconfSettings}" > "$user/.config/dconf/user-dconf"
+          chown $(basename "$user") "$user/.config/dconf/user-dconf"
         fi
       done
     '';
