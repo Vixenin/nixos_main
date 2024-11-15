@@ -21,9 +21,12 @@
     # Nvidia wayland tweaks
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+
+    # Drm kernet driver 'nvidia-drm' fix
+    VK_DRIVER_FILES=/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json;
   };
 
-  # Opentabletdriver
+  # OpenTabletDriver
   hardware.opentabletdriver.enable = true;
 
   # Dconf values logic
