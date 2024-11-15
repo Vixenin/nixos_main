@@ -39,7 +39,6 @@
     # Games
     wineWowPackages.stable
     bottles
-    gamemode
     gamescope
     mangohud
     godot_4
