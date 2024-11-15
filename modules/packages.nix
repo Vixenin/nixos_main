@@ -37,6 +37,7 @@
     obs-studio
 
     # Games
+    wine
     bottles
     gamemode
     gamescope
