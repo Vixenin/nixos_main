@@ -40,7 +40,10 @@
     # Temporary workaround for custom vulkan headers
     in nvidiaDrivers // {
       settings = nvidiaDrivers.settings.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs ++ [ pkgs.vulkan-headers ];
+        buildInputs = oldAttrs.buildInputs ++ [ 
+          pkgs.vulkan-headers 
+          pkgs.vulkan-tools 
+        ];
       });
     };
   };
