@@ -37,7 +37,7 @@
     obs-studio
 
     # Games
-    lutris
+    bottles
     gamemode
     gamescope
     mangohud
