@@ -16,10 +16,10 @@
     wireplumber.enable = true;
   };
 
-  # ALSA state persistence
+  # Alsa state persistence
   sound.enable = true;
 
-  # ALSA default sound card
+  # Alsa default sound card
   environment.etc."asound.conf".text = ''
     defaults.pcm.card 1
     defaults.ctl.card 1
