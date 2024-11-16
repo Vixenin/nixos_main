@@ -27,7 +27,7 @@
     vlc
     vesktop
 
-    # Media Tools
+    # Media tools
     aseprite
     blender
     kdenlive
