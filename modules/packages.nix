@@ -10,7 +10,6 @@
 
     # Programs
     gparted
-    vulkan-tools
     appimage-run
     git
     perl
