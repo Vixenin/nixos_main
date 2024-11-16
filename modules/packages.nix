@@ -25,7 +25,7 @@
 
     # Media
     vlc
-    discord
+    vesktop
 
     # Media Tools
     aseprite
@@ -37,8 +37,6 @@
     # Games
     wineWowPackages.stable
     bottles
-    gamescope
-    mangohud
     godot_4
   ];
 
