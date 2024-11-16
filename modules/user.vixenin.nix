@@ -11,7 +11,7 @@
     packages = with pkgs; [ kdePackages.kate ];
   };
 
-  # Timezone and locale settings
+  # Timezone and locale Settings
   time.timeZone = "Europe/Berlin";
   i18n = {
     defaultLocale = "en_US.UTF-8";
