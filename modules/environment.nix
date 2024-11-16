@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # System Packages
+  # System packages
   nixpkgs.config.allowUnfree = true;
 
   environment.sessionVariables = {
@@ -33,10 +33,10 @@
   system.activationScripts.dconfSetup = {
     text = let
       dconfSettings = ''
-        # Disable legacy tray for AppIndicator extension / XWayland fix
+        # Disable legacy tray for appIndicator extension / xwayland fix
         dconf write /org/gnome/shell/extensions/appindicator/legacy-tray-enabled false
 
-        # Disable GNOME tablet input management
+        # Disable gnome tablet input management
         dconf write /org/gnome/settings-daemon/plugins/peripherals/tablets/active false
       '';
     in ''
