@@ -1,17 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  # User Configuration
+  # User configuration
   users.users.vixenin = {
     isNormalUser = true;
     description = "Vixenin";
     
-    # extragroup "gamemode" required since gamemode 1.8 to change CPU governor
+    # extragroup "gamemode" required since gamemode 1.8 to change cpu governor
     extraGroups = [ "networkmanager" "wheel" "gamemode" ];
     packages = with pkgs; [ kdePackages.kate ];
   };
 
-  # Timezone and Locale Settings
+  # Timezone and locale settings
   time.timeZone = "Europe/Berlin";
   i18n = {
     defaultLocale = "en_US.UTF-8";
