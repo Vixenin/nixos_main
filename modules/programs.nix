@@ -50,7 +50,7 @@
       };
 
       # Fix gamemode error + mangohud in steam
-      extraPackages = pkgs: with pkgs; [ gamemode mangohud ];
+      extraPackages = [ pkgs.gamemode pkgs.mangohud ];
 
       # Proton-ge inside steam options
       extraCompatPackages = [ pkgs.proton-ge-bin ];
