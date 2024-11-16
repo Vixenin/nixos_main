@@ -19,16 +19,10 @@
     gamemode = {
       enable = true;
       enableRenice = true;
-
       settings = {
         general = {
           softrealtime = "auto";
           renice = -10;
-        };
-
-        custom = {
-          start = "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Gamemode on'";
-          end = "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Gamemode off'";
         };
       };
     };
@@ -36,7 +30,7 @@
     # Gamescope
     gamescope = {
       enable = true;
-      capSysNice = true;
+      capSysNice = false;
     };
 
     # Steam
@@ -46,14 +40,11 @@
 
       # Fix gamescope inside steam
       package = pkgs.steam.override {
-        extraLibraries = pkgs: with pkgs; [libkrb5 keyutils];
-      };
-
-      # Fix gamemode error + mangohud in steam
-      extraPackages = [ pkgs.gamemode pkgs.mangohud ];
+      extraLibraries = pkgs: with pkgs; [ libkrb5 keyutils ];
+    };
 
       # Proton-ge inside steam options
-      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      extraCompatPackages = with pkgs; [ proton-ge-bin ];
     };
   };
 }
