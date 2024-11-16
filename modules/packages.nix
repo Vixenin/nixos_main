@@ -36,6 +36,7 @@
 
     # Games
     wineWowPackages.stable
+    mangohud
     bottles
     godot_4
   ];
