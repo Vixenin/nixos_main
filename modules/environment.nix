@@ -22,21 +22,21 @@
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
 
-    # Drm kernet driver 'nvidia-drm' fix
+    # Drm kernel driver 'nvidia-drm' fix
     VK_DRIVER_FILES=/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json;
   };
 
-  # OpenTabletDriver
+  # Opentabletdriver
   hardware.opentabletdriver.enable = true;
 
   # Dconf values logic
   system.activationScripts.dconfSetup = {
     text = let
       dconfSettings = ''
-        # Disable legacy tray for AppIndicator extension / xwayland fix
+        # Disable legacy tray for AppIndicator extension / XWayland fix
         dconf write /org/gnome/shell/extensions/appindicator/legacy-tray-enabled false
 
-        # Disable gnome tablet input management / opentabletdriver mapping fix
+        # Disable GNOME tablet input management
         dconf write /org/gnome/settings-daemon/plugins/peripherals/tablets/active false
       '';
     in ''
