@@ -42,12 +42,25 @@
         # Disable gnome tablet input management
         dconf write /org/gnome/settings-daemon/plugins/peripherals/tablets/active false
       '';
+      mangohudSettings = ''
+        fps_only=1
+        font_size=20
+        position=top-left
+        text_color=FF69B4
+        background_alpha=0
+      '';
     in ''
       for user in /home/*; do
         if [ -d "$user" ]; then
+          # dconf setup
           mkdir -p "$user/.config/dconf"
           echo "${dconfSettings}" > "$user/.config/dconf/user-dconf"
           chown $(basename "$user") "$user/.config/dconf/user-dconf"
+
+          # MangoHUD setup
+          mkdir -p "$user/.config/MangoHud"
+          echo "${mangohudSettings}" > "$user/.config/MangoHud/MangoHud.conf"
+          chown $(basename "$user") "$user/.config/MangoHud/MangoHud.conf"
         fi
       done
     '';
