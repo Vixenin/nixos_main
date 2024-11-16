@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    # Silly Stuff
+    # Silly stuff
     fastfetch
     gnome.gnome-tweaks
     gnome-extension-manager
@@ -19,7 +19,7 @@
     vscode
     libreoffice-fresh
 
-    # Noise suppression & Alsa Mixer
+    # Noise suppression & alsa mixer
     easyeffects
     alsa-utils
 
