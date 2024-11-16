@@ -29,11 +29,14 @@
   # Opentabletdriver
   hardware.opentabletdriver.enable = true;
 
+  # Xbox controller support
+  hardware.xone.enable = true;
+
   # Dconf values logic
   system.activationScripts.dconfSetup = {
     text = let
       dconfSettings = ''
-        # Disable legacy tray for appIndicator extension / xwayland fix
+        # Disable legacy tray for appindicator extension / xwayland fix
         dconf write /org/gnome/shell/extensions/appindicator/legacy-tray-enabled false
 
         # Disable gnome tablet input management
