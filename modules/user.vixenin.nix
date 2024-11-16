@@ -6,7 +6,7 @@
     isNormalUser = true;
     description = "Vixenin";
     
-    # extragroup "gamemode" required since gamemode 1.8 to change cpu governor
+    # Extragroup "gamemode" required since gamemode 1.8 to change cpu governor
     extraGroups = [ "networkmanager" "wheel" "gamemode" ];
     packages = with pkgs; [ kdePackages.kate ];
   };
