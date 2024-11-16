@@ -49,8 +49,8 @@
         extraLibraries = pkgs: with pkgs; [libkrb5 keyutils];
       };
 
-      # Fix gamemode error in steam
-      extraPackages = [ pkgs.gamemode ];
+      # Fix gamemode error + mangohud in steam
+      extraPackages = pkgs: with pkgs; [ gamemode mangohud ];
 
       # Proton-ge inside steam options
       extraCompatPackages = [ pkgs.proton-ge-bin ];
