@@ -28,7 +28,6 @@
     discord
 
     # Media Tools
-    krita
     aseprite
     blender
     kdenlive
