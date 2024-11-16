@@ -15,6 +15,30 @@
     # Firefox
     firefox.enable = true;
 
+    # Gamemode
+    gamemode = {
+      enable = true;
+      enableRenice = true;
+
+      settings = {
+        general = {
+          softrealtime = "auto";
+          renice = -10;
+        };
+
+        custom = {
+          start = "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Gamemode on'";
+          end = "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Gamemode off'";
+        };
+      };
+    };
+
+    # Gamescope
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
+
     # Steam
     steam = {
       enable = true;
@@ -22,12 +46,14 @@
 
       # Fix gamescope inside steam
       package = pkgs.steam.override {
-        extraLibraries = pkgs: with pkgs; [ libkrb5 keyutils ];
+        extraLibraries = pkgs: with pkgs; [libkrb5 keyutils];
       };
+
+      # Fix gamemode error in steam
+      extraPackages = [ pkgs.gamemode ];
 
       # Proton-ge inside steam options
       extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
-    gamemode.enable = true;
   };
 }
