@@ -5,7 +5,9 @@
   users.users.vixenin = {
     isNormalUser = true;
     description = "Vixenin";
-    extraGroups = [ "networkmanager" "wheel" ];
+    
+     # extragroup "gamemode" required since gamemode 1.8 to change CPU governor
+    extraGroups = [ "networkmanager" "wheel" "gamemode" ];
     packages = with pkgs; [ kdePackages.kate ];
   };
 
