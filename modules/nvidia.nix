@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # Graphics and Nvidia Driver
+  # Graphics and nvidia driver
   hardware.opengl = {
     enable = true;
     
