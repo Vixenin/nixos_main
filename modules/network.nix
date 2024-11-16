@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # Network Configuration
+  # Network configuration
   networking = {
     hostName = "chillet";
     networkmanager.enable = true;
@@ -12,7 +12,7 @@
     };
   };
 
-  # Avahi for VR | WiVRn
+  # Avahi for vr | wivrn
   services.avahi = {
     enable = true;
     publish = {
@@ -21,6 +21,6 @@
     };
   };
 
-  # Printing and Audio
+  # Printing and audio
   services.printing.enable = true;
 }
