@@ -43,6 +43,7 @@
         dconf write /org/gnome/settings-daemon/plugins/peripherals/tablets/active false
       '';
       mangohudSettings = ''
+        fps_limit=162
         fps_only=1
         font_size=20
         position=top-left
@@ -52,12 +53,12 @@
     in ''
       for user in /home/*; do
         if [ -d "$user" ]; then
-          # dconf setup
+          # Dconf setup
           mkdir -p "$user/.config/dconf"
           echo "${dconfSettings}" > "$user/.config/dconf/user-dconf"
           chown $(basename "$user") "$user/.config/dconf/user-dconf"
 
-          # MangoHUD setup
+          # Mangohud setup
           mkdir -p "$user/.config/MangoHud"
           echo "${mangohudSettings}" > "$user/.config/MangoHud/MangoHud.conf"
           chown $(basename "$user") "$user/.config/MangoHud/MangoHud.conf"
