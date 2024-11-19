@@ -7,6 +7,7 @@
   environment.sessionVariables = {
     # Wayland browser tweaks
     NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
 
     # Steam proton & wayland tweaks
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/vixenin/.steam/root/compatibilitytools.d";
