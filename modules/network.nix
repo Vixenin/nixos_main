@@ -10,6 +10,7 @@
       allowedUDPPorts = [ 5353 9757 ];
       enable = true;
     };
+    enableIPv6 = false;
   };
 
   # Avahi for vr | wivrn
