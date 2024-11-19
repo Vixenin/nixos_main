@@ -12,6 +12,7 @@
     kernelParams = [
       "nvidia-drm.modeset=1"
       "nvidia-drm.fbdev=1"
+      "ipv6.disable=1"
     ];
   };
 }
