@@ -8,6 +8,8 @@
       efi.canTouchEfiVariables = true;
     };
 
+    kernelPackages = pkgs.linuxPackages_latest;
+
     # Nvidia wayland tweaks & ghost monitor fix
     kernelParams = [
       "nvidia-drm.modeset=1"
