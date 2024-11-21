@@ -30,5 +30,10 @@
     };
   };
 
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+  };
+
   services.displayManager.defaultSession = "gnome";
 }
