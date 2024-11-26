@@ -25,6 +25,11 @@
 
     # Drm kernel driver 'nvidia-drm' fix
     VK_DRIVER_FILES=/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json;
+
+    # Nvidia 10gb shader cache
+    __GL_SHADER_DISK_CACHE = "1";
+    __GL_SHADER_DISK_CACHE_PATH = "/home/vixenin/.nv_shader_cache";
+    __GL_SHADER_DISK_CACHE_SIZE = "10737418240";
   };
 
   # Opentabletdriver
