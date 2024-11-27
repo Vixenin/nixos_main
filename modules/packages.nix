@@ -3,10 +3,10 @@
 {
   environment.systemPackages = with pkgs; [
     # Silly stuff
-    fastfetch
     gnome.gnome-tweaks
     gnome-extension-manager
     gnomeExtensions.arcmenu
+    fastfetch
 
     # Programs
     gparted
