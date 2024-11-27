@@ -16,5 +16,10 @@
       "nvidia-drm.fbdev=1"
       "ipv6.disable=1"
     ];
+
+    # Force nvidia proprietary
+    blacklistedKernelModules = [
+      "nouveau"
+    ];
   };
 }
