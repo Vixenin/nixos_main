@@ -7,7 +7,7 @@
     morewaita-icon-theme
     catppuccin-cursors
 
-    gnome.gnome-tweaks
+    gnome-tweaks
     gnome-extension-manager
     gnomeExtensions.arcmenu
     
@@ -21,7 +21,7 @@
     unzip
     pavucontrol
     android-tools
-    gnome.gnome-software
+    gnome-software
     vscode
     libreoffice-fresh
 
@@ -31,7 +31,7 @@
 
     # Media
     vlc
-    vesktop
+    discord-canary
 
     # Media tools
     aseprite
@@ -52,7 +52,6 @@
     gnome-photos
     gnome-tour
     gedit
-  ]) ++ (with pkgs.gnome; [
     cheese
     gnome-music
     gnome-terminal
