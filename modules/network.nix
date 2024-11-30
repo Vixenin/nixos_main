@@ -7,19 +7,11 @@
     networkmanager.enable = true;
     firewall = {
       allowedTCPPorts = [ 57621 9757 ];
-      allowedUDPPorts = [ 5353 9757 ];
+      allowedUDPPorts = [ 5353 9757 53 67 68 ];
       enable = true;
     };
     enableIPv6 = false;
-  };
-
-  # Avahi for vr | wivrn
-  services.avahi = {
-    enable = true;
-    publish = {
-      enable = true;
-      userServices = true;
-    };
+    wireless.iwd.enable = true;
   };
 
   # Printing and audio
