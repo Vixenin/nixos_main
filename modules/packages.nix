@@ -3,9 +3,14 @@
 {
   environment.systemPackages = with pkgs; [
     # Silly stuff
+    nightfox-gtk-theme
+    morewaita-icon-theme
+    catppuccin-cursors
+
     gnome.gnome-tweaks
     gnome-extension-manager
     gnomeExtensions.arcmenu
+    
     fastfetch
 
     # Programs
@@ -15,6 +20,7 @@
     perl
     unzip
     pavucontrol
+    android-tools
     gnome.gnome-software
     vscode
     libreoffice-fresh
