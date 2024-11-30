@@ -38,11 +38,6 @@
       enable = true;
       gamescopeSession.enable = true;
 
-      # Fix gamescope inside steam
-      package = pkgs.steam.override {
-      extraLibraries = pkgs: with pkgs; [ libkrb5 keyutils ];
-    };
-
       # Proton-ge inside steam options
       extraCompatPackages = with pkgs; [ proton-ge-bin ];
     };
