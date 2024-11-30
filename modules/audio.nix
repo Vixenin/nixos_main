@@ -14,10 +14,8 @@
 
     pulse.enable = true;
     wireplumber.enable = true;
+    jack.enable = true;
   };
-
-  # Alsa state persistence
-  sound.enable = true;
 
   # Alsa default sound card
   environment.etc."asound.conf".text = ''
