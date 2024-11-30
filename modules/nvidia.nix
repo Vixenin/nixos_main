@@ -2,13 +2,10 @@
 
 {
   # Graphics and nvidia driver
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    
-    # Enable vulkan support
-    driSupport = true;
-
-    driSupport32Bit = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [monado-vulkan-layers];
   };
 
   hardware.nvidia = {
