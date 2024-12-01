@@ -18,7 +18,6 @@
       "nvidia-drm.modeset=1"
       "nouveau.modeset=0"
       "nvidia-drm.fbdev=1"
-      "ipv6.disable=1"
     ];
 
     # Force nvidia proprietary
