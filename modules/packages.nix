@@ -34,8 +34,9 @@
     discord-canary
 
     # Media tools
-    aseprite
     blender
+    krita
+    aseprite
     kdenlive
     audacity
     obs-studio
