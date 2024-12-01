@@ -32,9 +32,6 @@
     VISUAL = "vscode";
   };
 
-  # Opentabletdriver
-  hardware.opentabletdriver.enable = true;
-
   # Xbox controller support my beloved :3
   hardware.xone.enable = true;
 
