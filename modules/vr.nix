@@ -1,27 +1,23 @@
 { config, pkgs, ... }:
 
 {
-    # Install wivrn :3
-    services.wivrn = {
+    # Avahi for vr | wivrn
+    services.avahi = {
         enable = true;
-        defaultRuntime = true;
-        openFirewall = true;
-        config.json = {
-            scale = 1.0;
-            bitrate = 50 * 1000000;
-            encoders = [ 
-                {
-                    encoder = "nvenc";
-                    codec = "h264";
-                    width = 1.0;
-                    height = 1.0;
-                    offset_x = 0.0;
-                    offset_y = 0.0;
-                } 
-            ];
-            application = [ pkgs.wlx-overlay-s ];
-            tcp_only = true;
+        nssmdns4 = true;
+        publish = {
+            enable = true;
+            userServices = true;
         };
-        autoStart = true;
+    };
+
+    # Install wivrn :3
+    systemd.services.flatpak-wivrn-install = {
+        wantedBy = [ "multi-user.target" ];
+        after = [ "flatpak-repo.service" ];
+        path = [ pkgs.flatpak ];
+        script = ''
+            flatpak install -y flathub io.github.wivrn.wivrn
+        '';
     };
 }
