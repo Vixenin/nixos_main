@@ -61,7 +61,7 @@
                 echo '${wivrnConfig}' > "$user/.var/app/io.github.wivrn.wivrn/config/wivrn/config.json"
 
                 # Set ownership to the user
-                chown $(basename "$user") "$user/.var/app/io.github.wivrn.wivrn/config/wivrn/config.json"
+                echo '${wivrnConfig}' > "$user/.var/app/io.github.wivrn.wivrn/config/wivrn/config.json"
             fi
         done
     '';
