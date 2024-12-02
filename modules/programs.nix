@@ -18,16 +18,6 @@
     };
   };
 
-  # Make flatpak use vulkan layers
-  systemd.services.flatpak-vulkan = {
-    description = "Setup Vulkan Layers for Flatpak";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/bash -c 'echo \"export VK_LAYER_PATH=/run/current-system/sw/share/vulkan/explicit_layer.d\" >> /etc/environment'";
-    };
-  };
-
   programs = {
     # Firefox
     firefox.enable = true;
