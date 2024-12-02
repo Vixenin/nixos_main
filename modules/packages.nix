@@ -6,14 +6,13 @@
     nightfox-gtk-theme
     morewaita-icon-theme
     catppuccin-cursors
-
+    
     gnome-tweaks
     gnomeExtensions.arcmenu
     
     fastfetch
 
     # Programs
-    monado
     gparted
     appimage-run
     git
