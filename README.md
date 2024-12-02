@@ -1,5 +1,5 @@
 # Nixos Main Rig
-My main nixos config
+My main nixos config :)
 --------------------
 Gnome Wayland
 * Steam machine 🎮
