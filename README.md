@@ -1,4 +1,4 @@
-# nixos_main
+# Nixos Main Rig
 My main nixos config
 --------------------
 Gnome Wayland
