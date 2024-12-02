@@ -1,26 +1,31 @@
 { config, pkgs, ... }:
 
 {
-  # Enable flatpak
+  # Install flatpak & flatbub repository
   services.flatpak.enable = true;
+
   systemd.services.flatpak-repo = {
     description = "Add Flathub Beta Flatpak Repository";
     wantedBy = [ "multi-user.target" ];
     path = [ pkgs.flatpak ];
     script = ''
-      flatpak remote-add --user --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
     '';
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
   };
 
-  # Install discord canary with wayland support
-  systemd.services.discord-canary = {
-    description = "Install Discord Canary and configure Wayland support";
+  # Make flatpak use vulkan layers
+  systemd.services.flatpak-vulkan = {
+    description = "Setup Vulkan Layers for Flatpak";
     wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.flatpak ];
-    script = ''
-      flatpak install -y com.discordapp.DiscordCanary
-      flatpak override --user --socket=wayland com.discordapp.DiscordCanary
-    '';
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/bash -c 'echo \"export VK_LAYER_PATH=/run/current-system/sw/share/vulkan/explicit_layer.d\" >> /etc/environment'";
+    };
   };
 
   programs = {
