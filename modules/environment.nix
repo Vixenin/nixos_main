@@ -11,9 +11,6 @@
     # Steam proton & wayland tweaks
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/vixenin/.steam/root/compatibilitytools.d";
     GAMESCOPE_WAYLAND_DISPLAY = "wayland-0";
-
-    # Monado openxr runtime
-    XR_RUNTIME_JSON = "/run/current-system/sw/share/openxr/1/openxr_monado.json";
   };
 
   environment.variables = {
