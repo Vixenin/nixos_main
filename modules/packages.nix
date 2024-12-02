@@ -8,12 +8,12 @@
     catppuccin-cursors
 
     gnome-tweaks
-    gnome-extension-manager
     gnomeExtensions.arcmenu
     
     fastfetch
 
     # Programs
+    monado
     gparted
     appimage-run
     git
@@ -31,7 +31,6 @@
 
     # Media
     vlc
-    discord-canary
 
     # Media tools
     blender
