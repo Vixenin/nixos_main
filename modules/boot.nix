@@ -10,8 +10,8 @@
 
     #kernelPackages = pkgs.linuxPackages_latest;
 
-    # Fuck you ngreedia with your shit drivers :3
-    kernelPackages = pkgs.linuxPackages_6_11;
+    # Kernel version
+    kernelPackages = pkgs.linuxPackages_6_12;
 
     # Nvidia wayland tweaks & ghost monitor fix
     kernelParams = [
