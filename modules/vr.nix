@@ -26,58 +26,70 @@
     };
 
     # Wivrn config
-    system.activationScripts.setupWivrnConfig = let
-    wivrnConfig = builtins.toJSON {
-        "scale" = 0.4;
-        "bitrate" = 50000000;
-        "encoders" = [
-            {
-                "encoder" = "nvenc";
-                "codec" = "h264";
-                "width" = 0.5;
-                "height" = 1.0;
-                "offset_x" = 0.0;
-                "offset_y" = 0.0;
-            }
-            {
-                "encoder" = "nvenc";
-                "codec" = "h264";
-                "width" = 0.5;
-                "height" = 1.0;
-                "offset_x" = 0.5;
-                "offset_y" = 0.0;
-            }
-        ];
-        "application" = "wlx-overlay-s";
-        "tcp_only" = true;
+    system.userActivationScripts.setupWivrnConfig = {
+        text = ''
+            wivrnConfig=$(cat <<EOF
+                {
+                    "scale": 0.3,
+                    "bitrate": 1500000000,
+                    "encoders": [
+                        {
+                            "encoder": "nvenc",
+                            "codec": "h264",
+                            "width": 0.5,
+                            "height": 1.0,
+                            "offset_x": 0.0,
+                            "offset_y": 0.0,
+                            "group": 0
+                        },
+                        {
+                            "encoder": "nvenc",
+                            "codec": "h264",
+                            "width": 0.5,
+                            "height": 1.0,
+                            "offset_x": 0.5,
+                            "offset_y": 0.0,
+                            "group": 0
+                        }
+                    ],
+                    "application": "wlx-overlay-s",
+                    "tcp_only": true
+                }
+        EOF
+            )
+
+            mkdir -p ~/.var/app/io.github.wivrn.wivrn/config/wivrn
+            echo "$wivrnConfig" > ~/.var/app/io.github.wivrn.wivrn/config/wivrn/config.json
+        '';
     };
-    in ''
-        for user in /home/*; do
-            if [ -d "$user" ]; then
-                # Create Wivrn config directory
-                mkdir -p "$user/.var/app/io.github.wivrn.wivrn/config/wivrn"
-
-                # Write the Wivrn configuration
-                echo '${wivrnConfig}' > "$user/.var/app/io.github.wivrn.wivrn/config/wivrn/config.json"
-
-                # Set ownership to the user
-                echo '${wivrnConfig}' > "$user/.var/app/io.github.wivrn.wivrn/config/wivrn/config.json"
-            fi
-        done
-    '';
 
     # Install wlx-overlay-s
     environment.systemPackages = [
         pkgs.wlx-overlay-s
     ];
 
+    # Wlx-overlay-s config
+    system.userActivationScripts.setupWlxOverlaySConfig = {
+        text = ''
+            wlxOverlaySConfig=$(cat <<EOF
+                {
+                    "use_skybox": false
+                }
+        EOF
+            )
+
+            mkdir -p ~/.config/wlxoverlay/conf.d
+            echo "$wlxOverlaySConfig" > ~/.config/wlxoverlay/conf.d/skybox.yaml
+        '';
+    };
+
     # Reverse adb tether service for wivrn
     systemd.services.adb-reverse = {
-    description = "Maintain ADB Reverse for Wivrn";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    path = [ pkgs.android-tools ];
+        description = "Maintain ADB Reverse for Wivrn";
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
+        path = [ pkgs.android-tools ];
         serviceConfig = {
             ExecStart = "${pkgs.android-tools}/bin/adb reverse tcp:9757 tcp:9757";
             Restart = "always";
@@ -89,8 +101,8 @@
 
     # Wivrn launch Service (manual trigger)
     systemd.services.wivrn-launch = {
-    description = "Launch Wivrn on Android Device";
-    path = [ pkgs.android-tools ];
+        description = "Launch Wivrn on Android Device";
+        path = [ pkgs.android-tools ];
         serviceConfig = {
             ExecStart = "${pkgs.android-tools}/bin/adb shell am start -a android.intent.action.VIEW -d 'wivrn+tcp://localhost' org.meumeu.wivrn.github";
             StandardOutput = "journal";
