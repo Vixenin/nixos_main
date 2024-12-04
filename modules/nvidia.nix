@@ -5,7 +5,10 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [monado-vulkan-layers];
+    extraPackages = with pkgs; [
+        monado-vulkan-layers
+        vulkan-validation-layers
+      ];
   };
 
   hardware.nvidia = {
