@@ -8,8 +8,6 @@
       efi.canTouchEfiVariables = true;
     };
 
-    #kernelPackages = pkgs.linuxPackages_latest;
-
     # Kernel version
     kernelPackages = pkgs.linuxPackages_6_12;
 
