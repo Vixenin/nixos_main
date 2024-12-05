@@ -5,11 +5,6 @@
   services.xserver = {
     enable = true;
 
-    xkb = {
-      layout = "us";
-      variant = "";
-    };
-
     videoDrivers = [ "nvidia" ];
 
     displayManager = {
@@ -36,4 +31,11 @@
   };
 
   services.displayManager.defaultSession = "gnome";
+
+  # Enable lavd scheduler
+  services.scx = {
+    enable = true;
+    scheduler = "scx_lavd";
+    extraArgs = [ "--performance" ];
+  };
 }
