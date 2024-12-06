@@ -11,35 +11,30 @@
         };
     };
 
-    # Install wivrn :3
-    systemd.services.flatpak-wivrn-install = {
-        wantedBy = [ "multi-user.target" ];
-        after = [ "flatpak-repo.service" ];
-        path = [ pkgs.flatpak ];
-        script = ''
-            flatpak install -y flathub io.github.wivrn.wivrn
-        '';
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = false;
-        };
-    };
-
     # Wivrn config
     system.userActivationScripts.setupWivrnConfig = {
         text = ''
             wivrnConfig=$(cat <<EOF
                 {
                     "scale": 0.4,
-                    "bitrate": 90000000,
+                    "bitrate": 80000000,
                     "encoders": [
                         {
                             "encoder": "nvenc",
                             "codec": "h264",
                             "width": 0.5,
-                            "height": 1.0,
+                            "height": 0.25,
                             "offset_x": 0.0,
                             "offset_y": 0.0,
+                            "group": 0
+                        },
+                        {
+                            "encoder": "nvenc",
+                            "codec": "h264",
+                            "width": 0.5,
+                            "height": 0.75,
+                            "offset_x": 0.0,
+                            "offset_y": 0.25,
                             "group": 0
                         },
                         {
