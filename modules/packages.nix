@@ -2,6 +2,11 @@
 
 {
   environment.systemPackages = with pkgs; [
+    # Vulkan stuff
+    vulkan-tools
+    vulkan-loader
+    vulkan-headers
+
     # Silly stuff
     nightfox-gtk-theme
     morewaita-icon-theme
