@@ -34,13 +34,8 @@
       openSha256 = "sha256-/tM3n9huz1MTE6KKtTCBglBMBGGL/GOHi5ZSUag4zXA=";
       settingsSha256 = "sha256-H7uEe34LdmUFcMcS6bz7sbpYhg9zPCb/5AmZZFTx1QA=";
       persistencedSha256 = "sha256-hdszsACWNqkCh8G4VBNitDT85gk9gJe1BlQ8LdrYIkg=";
-      patches = [
-        (pkgs.fetchpatch {
-          # Kernel 6.12 compatibility
-          # https://forums.developer.nvidia.com/t/patch-for-565-57-01-linux-kernel-6-12/313260
-          url = "https://github.com/Binary-Eater/open-gpu-kernel-modules/commit/8ac26d3c66ea88b0f80504bdd1e907658b41609d.patch";
-          hash = "sha256-+SfIu3uYNQCf/KXhv4PWvruTVKQSh4bgU1moePhe57U=";
-        })
+      patchesOpen = [
+        ./nvidia.patch
       ];
     };
   };
