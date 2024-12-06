@@ -30,8 +30,8 @@
         text = ''
             wivrnConfig=$(cat <<EOF
                 {
-                    "scale": 0.3,
-                    "bitrate": 1500000000,
+                    "scale": 0.4,
+                    "bitrate": 90000000,
                     "encoders": [
                         {
                             "encoder": "nvenc",
@@ -67,21 +67,6 @@
     environment.systemPackages = [
         pkgs.wlx-overlay-s
     ];
-
-    # Wlx-overlay-s config
-    system.userActivationScripts.setupWlxOverlaySConfig = {
-        text = ''
-            wlxOverlaySConfig=$(cat <<EOF
-                {
-                    "use_skybox": false
-                }
-        EOF
-            )
-
-            mkdir -p ~/.config/wlxoverlay/conf.d
-            echo "$wlxOverlaySConfig" > ~/.config/wlxoverlay/conf.d/skybox.yaml
-        '';
-    };
 
     # Reverse adb tether service for wivrn
     systemd.services.adb-reverse = {
