@@ -2,22 +2,18 @@
 
 {
   # Graphics and nvidia driver
+  services.xserver.videoDrivers = ["nvidia"];
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-        monado-vulkan-layers
-        vulkan-validation-layers
-      ];
   };
 
   hardware.nvidia = {
     modesetting.enable = true;
-
     powerManagement = {
       # Powermanagement, safe for wayland
       enable = true;
-
+      
       finegrained = false;
     };
 
