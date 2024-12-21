@@ -16,6 +16,7 @@
       "nvidia-drm.modeset=1"
       "nouveau.modeset=0"
       "nvidia-drm.fbdev=1"
+      "nvidia.NVreg_EnableGpuFirmware=1"
     ];
 
     # Force nvidia proprietary
