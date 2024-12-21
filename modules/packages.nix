@@ -1,12 +1,14 @@
 { config, pkgs, ... }:
 
+let
+  unstable = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz";
+  }) {
+    config.allowUnfree = true;
+  };
+in
 {
   environment.systemPackages = with pkgs; [
-    # Vulkan stuff
-    vulkan-tools
-    vulkan-loader
-    vulkan-headers
-
     # Silly stuff
     nightfox-gtk-theme
     morewaita-icon-theme
@@ -24,7 +26,6 @@
     perl
     unzip
     pavucontrol
-    android-tools
     gnome-software
     vscode
     libreoffice-fresh
