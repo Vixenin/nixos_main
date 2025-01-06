@@ -12,6 +12,7 @@
       ./modules/audio.nix
       ./modules/desktop.environment.nix
       ./modules/packages.nix
+      ./modules/nixpkgs/overlays.nix
       ./modules/programs.nix
       ./modules/vr.nix
     ];
