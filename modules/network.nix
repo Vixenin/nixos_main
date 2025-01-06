@@ -6,14 +6,19 @@
     hostName = "chillet";
     networkmanager.enable = true;
     firewall = {
-      allowedTCPPorts = [ 57621 9757 ];
-      allowedUDPPorts = [ 5353 9757 53 67 68 ];
+      allowedTCPPorts = [ 57621 25565 9757 ];
+      allowedUDPPorts = [ 9757 25565 5353 53 67 68 ];
       enable = true;
     };
     enableIPv6 = false;
     wireless.iwd.enable = true;
   };
 
-  # Printing and audio
-  services.printing.enable = true;
+  services = {
+    # Printing and audio
+    printing.enable = true;
+
+    # Let there be derguns / for lan gaeming :3
+    tailscale.enable = true;
+  };
 }
