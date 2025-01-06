@@ -17,8 +17,5 @@
   services = {
     # Printing and audio
     printing.enable = true;
-
-    # Let there be derguns / for lan gaeming :3
-    tailscale.enable = true;
   };
 }
