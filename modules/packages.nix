@@ -29,7 +29,7 @@ in
     gnome-software
     vscode
     libreoffice-fresh
-
+    
     # Noise suppression & alsa mixer
     easyeffects
     alsa-utils
@@ -50,6 +50,11 @@ in
     mangohud
     bottles
     godot_4
+
+    prismlauncher
+
+    vPack.r2modman
+    vPack.vintagestory
   ];
 
   # Remove gnome trash
