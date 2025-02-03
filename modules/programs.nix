@@ -19,10 +19,8 @@
   };
 
   programs = {
-    # Firefox
-    firefox.enable = true;
+    chromium.enable = true;
 
-    # Gamemode
     gamemode = {
       enable = true;
       enableRenice = true;
@@ -34,19 +32,24 @@
       };
     };
 
-    # Gamescope
     gamescope = {
       enable = true;
       capSysNice = false;
     };
 
-    # Steam
     steam = {
       enable = true;
       gamescopeSession.enable = true;
 
       # Proton-ge inside steam options
       extraCompatPackages = with pkgs; [ proton-ge-bin ];
+    };
+  };
+
+  # Enable chromum drm content
+  nixpkgs.config = {
+   chromium = {
+     enableWideVine = true;
     };
   };
 }
