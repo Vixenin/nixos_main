@@ -9,7 +9,7 @@
     };
 
     # Kernel version
-    kernelPackages = pkgs.linuxPackages_6_12;
+    kernelPackages = pkgs.linuxPackages_6_13;
 
     # Nvidia wayland tweaks & ghost monitor fix
     kernelParams = [
@@ -17,6 +17,7 @@
       "nouveau.modeset=0"
       "nvidia-drm.fbdev=1"
       "nvidia.NVreg_EnableGpuFirmware=1"
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
     ];
 
     # Force nvidia proprietary
