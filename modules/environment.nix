@@ -27,10 +27,6 @@
     # Drm kernel driver 'nvidia-drm' fix
     VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
 
-    # Fix vulkan layers path
-    VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/implicit_layer.d";
-    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
-
     # Wayland browser tweaks
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
