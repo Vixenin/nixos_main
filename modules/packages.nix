@@ -12,7 +12,6 @@ in
     # Silly stuff
     nightfox-gtk-theme
     morewaita-icon-theme
-    catppuccin-cursors
     
     gnome-tweaks
     gnomeExtensions.arcmenu
@@ -26,6 +25,7 @@ in
     perl
     unzip
     pavucontrol
+    chromium
     gnome-software
     vscode
     libreoffice-fresh
@@ -39,7 +39,6 @@ in
 
     # Media tools
     blender
-    krita
     aseprite
     kdenlive
     audacity
