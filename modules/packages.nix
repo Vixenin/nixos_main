@@ -24,6 +24,7 @@ in
     git
     perl
     unzip
+    wget
     pavucontrol
     chromium
     gnome-software
@@ -48,12 +49,10 @@ in
     wineWowPackages.stable
     mangohud
     bottles
-    godot_4
-
+    
     prismlauncher
 
     vPack.r2modman
-    vPack.vintagestory
   ];
 
   # Remove gnome trash
