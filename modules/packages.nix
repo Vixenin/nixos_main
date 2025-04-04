@@ -45,6 +45,8 @@ in
     audacity
     obs-studio
 
+    unityhub
+
     # Games
     wineWowPackages.stable
     mangohud
