@@ -8,6 +8,7 @@ Gnome Wayland
 
 For Steam:
 - Use the launch option: SteamDeck=1 PROTON_USE_WINED3D=0 PROTON_ENABLE_NVAPI=1 PROTON_USE_DXVK=1 gamemoderun mangohud %command%
+- Also for better performance and stability use the ProtonGE Layer https://github.com/GloriousEggroll/proton-ge-custom
 
 For VR:
 - You must install WiVRn from either the Flathub or https://github.com/WiVRn/WiVRn
