@@ -7,7 +7,7 @@ Gnome Wayland
 * Nvidia, Wayland & Gaming tweaks and fixes 🔧
 
 For Steam:
-- Use the launch option: PROTON_USE_WINED3D=0 PROTON_ENABLE_NVAPI=1 PROTON_USE_DXVK=1 gamemoderun mangohud %command%
+- Use the launch option: SteamDeck=1 PROTON_USE_WINED3D=0 PROTON_ENABLE_NVAPI=1 PROTON_USE_DXVK=1 gamemoderun mangohud %command%
 
 For VR:
 - You must install WiVRn from either the Flathub or https://github.com/WiVRn/WiVRn
