@@ -53,8 +53,6 @@ in
     bottles
     
     prismlauncher
-
-    vPack.r2modman
   ];
 
   # Remove gnome trash
