@@ -3,34 +3,37 @@
 {
   # Import configuration
   imports =
-    [ ./hardware-configuration.nix
+    [ 
+      # Auto hardware config
+      ./hardware-configuration.nix
+
+      # Applications
+      ./modules/applications/chromium.nix
+      ./modules/applications/mangohud.nix # Fps counter
+      ./modules/applications/steam.nix # Includes gamemode & gamescope
+      ./modules/applications/wivrn.nix # Vr service
+
+      # Hardware
+      ./modules/hardware/audio.nix
+      ./modules/hardware/nvidia.nix
+      ./modules/hardware/storage.nix
+      ./modules/hardware/xone.nix # Xbox controller
+
+      # Services
+      ./modules/services/flatpak.nix
+      ./modules/services/network.nix
+      ./modules/services/printer.nix
+      ./modules/services/system76-scheduler.nix
+
+      # Users
+      ./modules/users/vixenin.nix
+
+      # Extra
       ./modules/boot.nix
-      ./modules/environment.nix
-      ./modules/network.nix
-      ./modules/user.vixenin.nix
-      ./modules/nvidia.nix
-      ./modules/audio.nix
       ./modules/desktop.environment.nix
+      ./modules/environment.nix
       ./modules/packages.nix
-      ./modules/nixpkgs/overlays.nix
-      ./modules/programs.nix
-      ./modules/vr.nix
     ];
-
-  # Setup the storage
-  fileSystems."/mnt/Mango" = {
-    label = "Mango";
-    device = "/dev/disk/by-uuid/5aace8e8-d6f4-489f-8e29-ee07e5c51b91";
-    fsType = "ext4";
-    options = [ "nofail" "rw" "noatime" ];
-  };
-
-  fileSystems."/mnt/Backup" = {
-    label = "Backup";
-    device = "/dev/disk/by-uuid/c515297a-7147-4c84-92fe-24939a787555";
-    fsType = "ext4";
-    options = [ "nofail" "rw" "noatime" ];
-  };
 
   # System State Version
   system.stateVersion = "24.11";
