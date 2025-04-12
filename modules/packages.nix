@@ -72,5 +72,6 @@ in
     iagno
     hitori
     atomix
+    gnome-system-monitor
   ]);
 }
