@@ -2,36 +2,33 @@
 
 {
   # Desktop and display manager
-  services.xserver = {
-    enable = true;
+  services = {
+    xserver = {
+      enable = true;
 
-    displayManager = {
-      gdm = {
+      displayManager = {
+        gdm = {
+          enable = true;
+          wayland = true;
+          autoSuspend = false;
+        };
+      };
+      
+      desktopManager.gnome = {
         enable = true;
-        wayland = true;
-        autoSuspend = false;
+        extraGSettingsOverridePackages = [pkgs.mutter];
+        extraGSettingsOverrides = ''
+          [org.gnome.mutter]
+          experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
+        '';
       };
     };
 
-    desktopManager.gnome = {
-      enable = true;
-      extraGSettingsOverridePackages = [pkgs.mutter];
-      extraGSettingsOverrides = ''
-        [org.gnome.mutter]
-        experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
-      '';
-    };
+    displayManager.defaultSession = "gnome";
   };
 
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-  };
-
-  services.displayManager.defaultSession = "gnome";
-
-  # Enable system76 scheduler
-  services.system76-scheduler = {
-    enable = true;
   };
 }
