@@ -15,16 +15,26 @@ in
   boot = {
     # Nvidia wayland tweaks & ghost monitor fix
     kernelParams = [
+
+      # Core functionality
+      "pci=realloc=on"
       "nvidia-drm.modeset=1"
-      "nouveau.modeset=0"
       "nvidia-drm.fbdev=1"
       "nvidia.NVreg_EnableGpuFirmware=1"
+
+      # Shader cache
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+      "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+
+      # Performance & rebar
+      "nvidia.NVreg_UsePageAttributeTable=1"
+      "nvidia.NVreg_EnableResizableBAR=1"
     ];
 
     # Force nvidia proprietary
     blacklistedKernelModules = [
       "nouveau"
+      "nvidiafb"
     ];
   };
 
