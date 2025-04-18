@@ -19,6 +19,9 @@
       ./modules/hardware/storage.nix
       ./modules/hardware/xone.nix # Xbox controller
 
+      # Nixpkgs
+      ./modules/nixpkgs/overlay.nix
+
       # Services
       ./modules/services/flatpak.nix
       ./modules/services/network.nix
