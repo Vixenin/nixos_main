@@ -3,12 +3,12 @@
 let
   # Base nvidia driver metadata
   mkDriverArgs = {
-    version = "570.133.07";
-    sha256_64bit = "sha256-LUPmTFgb5e9VTemIixqpADfvbUX1QoTT2dztwI3E3CY=";
-    sha256_aarch64 = "sha256-yTovUno/1TkakemRlNpNB91U+V04ACTMwPEhDok7jI0=";
-    openSha256 = "sha256-9l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    settingsSha256 = "sha256-XMk+FvTlGpMquM8aE8kgYK2PIEszUZD2+Zmj2OpYrzU=";
-    persistencedSha256 = "sha256-G1V7JtHQbfnSRfVjz/LE2fYTlh9okpCbE4dfX9oYSg8=";
+    version = "575.51.02";
+    sha256_64bit = "sha256-XZ0N8ISmoAC8p28DrGHk/YN1rJsInJ2dZNL8O+Tuaa0=";
+    sha256_aarch64 = lib.fakeSha256;
+    openSha256 = lib.fakeSha256;
+    settingsSha256 = "sha256-6n9mVkEL39wJj5FB1HBml7TTJhNAhS/j5hqpNGFQE4w=";
+    persistencedSha256 = lib.fakeSha256;
   };
 in
 {
@@ -69,6 +69,11 @@ in
     # Nvidia custom driver version
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver mkDriverArgs;
   };
+
+  # Cuda support
+  environment.systemPackages = with pkgs; [
+    cudatoolkit
+  ];
 
   # Accept Nvidia license
   nixpkgs.config.nvidia.acceptLicense = true;
