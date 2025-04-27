@@ -5,13 +5,17 @@
     (self: super: {
       vPack = {
         lact = self.callPackage ./lact/package.nix { };
+        alchemy-viewer = self.callPackage ./alchemy-viewer/package.nix { };
       };
     })
   ];
 
   #enable lact and lactd.service
 
-  environment.systemPackages = [ pkgs.vPack.lact ];
+  environment.systemPackages = with pkgs; [
+    vPack.lact
+    vPack.alchemy-viewer 
+  ];
 
   systemd.services.lactd = {
     description = "LACT Daemon";
