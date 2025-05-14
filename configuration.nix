@@ -17,7 +17,7 @@
       ./modules/hardware/audio.nix
       ./modules/hardware/nvidia.nix
       ./modules/hardware/storage.nix
-      ./modules/hardware/xone.nix # Xbox controller
+      ./modules/hardware/xpadneo.nix # Xbox controller
 
       # Nixpkgs
       ./modules/nixpkgs/overlay.nix
