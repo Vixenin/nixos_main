@@ -2,7 +2,6 @@
 
 {
     environment.systemPackages = [
-        pkgs.wlx-overlay-s # Overlay for vr | wivrn 
         pkgs.android-tools # Adb for reverse tcp | wivrn
     ];
 
