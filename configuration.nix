@@ -16,6 +16,7 @@
       # Hardware
       ./modules/hardware/audio.nix
       ./modules/hardware/nvidia.nix
+      ./modules/hardware/other.nix # Manager other devices
       ./modules/hardware/storage.nix
       ./modules/hardware/xone.nix # Xbox controller
 
