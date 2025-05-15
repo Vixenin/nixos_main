@@ -14,7 +14,7 @@
       settings = {
         general = {
           softrealtime = "auto";
-          renice = -10;
+          renice = 0;
         };
       };
     };
