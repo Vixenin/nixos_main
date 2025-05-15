@@ -41,6 +41,7 @@ in
   environment.variables = {
     # Nvidia wayland tweaks
     GBM_BACKEND = "nvidia-drm";
+    NVD_BACKEND = "drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
 
     # Nvidia 10GB shader cache
@@ -51,6 +52,17 @@ in
 
     # Drm kernel driver 'nvidia-drm' fix
     VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+
+    # libGLX.so.0 fix for vr
+    LD_LIBRARY_PATH = lib.makeLibraryPath (with pkgs; [
+      libglvnd
+      mesa
+      vulkan-loader
+      xorg.libX11
+      xorg.libXext
+      xorg.libxcb
+      xorg.libXrandr
+    ]);
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -59,7 +71,30 @@ in
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
+      # Vulkan
+      vulkan-loader
+      vulkan-headers
+      vulkan-validation-layers
+      vulkan-volk
+
+      # Opengl
+      libglvnd
+      mesa
+
+      # Vaapi
+      libva
       nvidia-vaapi-driver
+      libva-vdpau-driver
+
+      # Vdpau
+      vaapiVdpau
+      libvdpau
+
+      # Opencl
+      ocl-icd
+
+      # Gstreamer
+      gst_all_1.gst-vaapi
     ];
   };
 
@@ -82,6 +117,16 @@ in
 
   # Cuda support
   environment.systemPackages = with pkgs; [
+    # Diag tools
+    vdpauinfo
+    pciutils
+
+    # Codecs
+    gst_all_1.gstreamer
+    gst_all_1.gst-libav
+    gst_all_1.gst-plugins-base
+
+    #Simple cuda support
     cudatoolkit
   ];
 
