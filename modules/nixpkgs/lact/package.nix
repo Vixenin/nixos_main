@@ -1,9 +1,8 @@
 # Pulled from: https://github.com/NixOS/nixpkgs/pull/374771/
-# Updated to 0.7.3 with default icon fix
+# Updated to 0.7.4 with fixes
 
-{
+{ 
   lib,
-  rustPlatform,
   stdenv,
   fetchFromGitHub,
   pkg-config,
@@ -17,26 +16,49 @@
   nix-update-script,
   hwdata,
   fuse3,
+  ocl-icd,
 }:
 
-rustPlatform.buildRustPackage rec {
+let
+  rust-overlay = fetchFromGitHub {
+    owner = "oxalica";
+    repo = "rust-overlay";
+    rev = "master";
+    hash = "sha256-s33mQ2s5L/2nyllhRTywgECNZyCqyF4MJeM3vG/GaRo=";
+  };
+
+  pkgs = import <nixpkgs> {
+    overlays = [ (import rust-overlay) ];
+    inherit (stdenv) system;
+  };
+
+  rustNightly = pkgs.rust-bin.nightly.latest.default.override {
+    extensions = [ "rust-src" ];
+  };
+
+  customRustPlatform = pkgs.makeRustPlatform {
+    cargo = rustNightly;
+    rustc = rustNightly;
+  };
+in
+customRustPlatform.buildRustPackage rec {
   pname = "lact";
-  version = "0.7.3";
+  version = "0.7.4";
 
   src = fetchFromGitHub {
     owner = "ilya-zlobintsev";
     repo = "LACT";
     tag = "v${version}";
-    hash = "sha256-R8VEAk+CzJCxPzJohsbL/XXH1GMzGI2W92sVJ2evqXs=";
+    hash = "sha256-zOvFWl78INlpCcEHiB3qZdxPNHXfUeKxfHyrO+wVNN0=";
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-SH7jmXDvGYO9S5ogYEYB8dYCF3iz9GWDYGcZUaKpWDQ=";
+  cargoHash = "sha256-10FdXUpLL+8xN818toShccgB5NfpzrOLfEeDAX5oMFw=";
 
   nativeBuildInputs = [
     pkg-config
     wrapGAppsHook4
-    rustPlatform.bindgenHook
+    pkgs.rustPlatform.bindgenHook
   ];
 
   buildInputs = [
@@ -47,18 +69,14 @@ rustPlatform.buildRustPackage rec {
     vulkan-tools
     hwdata
     fuse3
+    ocl-icd
   ];
 
   RUSTFLAGS = lib.optionalString stdenv.targetPlatform.isElf (
     lib.concatStringsSep " " [
-      "-C link-arg=-Wl,-rpath,${
-        lib.makeLibraryPath [
-          vulkan-loader
-          libdrm
-        ]
-      }"
-      "-C link-arg=-Wl,--add-needed,${vulkan-loader}/lib/libvulkan.so"
-      "-C link-arg=-Wl,--add-needed,${libdrm}/lib/libdrm.so"
+      "-C link-arg=-Wl,-rpath,${lib.makeLibraryPath [ vulkan-loader libdrm ]}"
+      "-C link-arg=-lvulkan"
+      "-C link-arg=-ldrm"
     ]
   );
 
@@ -85,9 +103,7 @@ rustPlatform.buildRustPackage rec {
       Terminal=false
     EOF
 
-    substituteInPlace \
-      lact-daemon/src/server/handler.rs \
-      lact-daemon/src/tests/mod.rs \
+    substituteInPlace lact-daemon/src/server/handler.rs \
       --replace-fail 'Database::read()' 'Database::read_from_file("${hwdata}/share/hwdata/pci.ids")'
   '';
 
@@ -104,14 +120,7 @@ rustPlatform.buildRustPackage rec {
 
   postFixup = lib.optionalString stdenv.targetPlatform.isElf ''
     patchelf $out/bin/.lact-wrapped \
-    --add-needed libvulkan.so \
-    --add-needed libdrm.so \
-    --add-rpath ${
-      lib.makeLibraryPath [
-        vulkan-loader
-        libdrm
-      ]
-    }
+      --add-rpath ${lib.makeLibraryPath [ vulkan-loader libdrm ]}
   '';
 
   passthru.updateScript = nix-update-script { };
@@ -120,9 +129,7 @@ rustPlatform.buildRustPackage rec {
     description = "Linux GPU Configuration Tool for AMD and NVIDIA";
     homepage = "https://github.com/ilya-zlobintsev/LACT";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [
-      vixenin
-    ];
+    maintainers = with lib.maintainers; [ vixenin ];
     platforms = lib.platforms.linux;
     mainProgram = "lact";
   };
