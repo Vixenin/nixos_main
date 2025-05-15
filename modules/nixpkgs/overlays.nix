@@ -6,6 +6,7 @@
       vPack = {
         lact = self.callPackage ./lact/package.nix { };
         alchemy-viewer = self.callPackage ./alchemy-viewer/package.nix { };
+        wlx-overlay-s = self.callPackage ./wlx-overlay-s/package.nix { };
       };
     })
   ];
@@ -15,6 +16,7 @@
   environment.systemPackages = with pkgs; [
     vPack.lact
     vPack.alchemy-viewer 
+    vPack.wlx-overlay-s
   ];
 
   systemd.services.lactd = {
