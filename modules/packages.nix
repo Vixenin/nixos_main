@@ -30,6 +30,7 @@ in
     gnome-software
     vscode
     libreoffice-fresh
+    unstable.xpad
     
     # Noise suppression & alsa mixer
     easyeffects
@@ -37,6 +38,7 @@ in
 
     # Media
     vlc
+    unstable.spicetify-cli
 
     # Media tools
     blender
