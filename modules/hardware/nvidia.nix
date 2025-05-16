@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  # Base nvidia driver metadata
+  # Driver metadata
   mkDriverArgs = {
     version = "575.51.02";
     sha256_64bit = "sha256-XZ0N8ISmoAC8p28DrGHk/YN1rJsInJ2dZNL8O+Tuaa0=";
@@ -13,9 +13,8 @@ let
 in
 {
   boot = {
-    # Nvidia wayland tweaks & ghost monitor fix
+    # Wayland tweaks & ghost monitor fix
     kernelParams = [
-
       # Core functionality
       "pci=realloc=on"
       "nvidia-drm.modeset=1"
@@ -31,7 +30,7 @@ in
       "nvidia.NVreg_EnableResizableBAR=1"
     ];
 
-    # Force nvidia proprietary
+    # Force proprietary drivers
     blacklistedKernelModules = [
       "nouveau"
       "nvidiafb"
@@ -39,32 +38,26 @@ in
   };
 
   environment.variables = {
-    # Nvidia wayland tweaks
+    # Wayland tweaks
     GBM_BACKEND = "nvidia-drm";
     NVD_BACKEND = "drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
 
-    # Nvidia 10GB shader cache
+    # 10GB shader cache
     __GL_SHADER_DISK_CACHE = "1";
     __GL_SHADER_DISK_CACHE_PATH = "$HOME/.nv_shader_cache";
     __GL_SHADER_DISK_CACHE_SIZE = "10737418240";
     __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
 
-    # Drm kernel driver 'nvidia-drm' fix
-    VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
-
     # libGLX.so.0 fix for vr
-    LD_LIBRARY_PATH = lib.makeLibraryPath (with pkgs; [
-      libglvnd
-      mesa
-      vulkan-loader
-      xorg.libX11
-      xorg.libXext
-      xorg.libxcb
-      xorg.libXrandr
-    ]);
+    LD_LIBRARY_PATH = "/run/opengl-driver/lib";
+
+    # Va-api and vdpau support
+    LIBVA_DRIVER_NAME = "nvidia";
+    VDPAU_DRIVER = "nvidia";
   };
 
+  # Use X driver
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.graphics = {
@@ -98,26 +91,33 @@ in
     ];
   };
 
+  # Nvidia in containers
+  hardware.nvidia-container-toolkit = {
+    enable = true;
+    package = pkgs.nvidia-container-toolkit;
+  };
+
   hardware.nvidia = {
     modesetting.enable = true;
+
     powerManagement = {
       # Power management, safe for wayland
       enable = true;
       finegrained = false;
     };
 
-    # For open drivers
+    # Open drivers
     open = false;
 
     nvidiaSettings = true;
 
-    # Nvidia custom driver version
+    # Custom driver
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver mkDriverArgs;
   };
 
   # Cuda support
   environment.systemPackages = with pkgs; [
-    # Diag tools
+    # Diagnostic tools
     vdpauinfo
     pciutils
 
@@ -126,10 +126,10 @@ in
     gst_all_1.gst-libav
     gst_all_1.gst-plugins-base
 
-    #Simple cuda support
+    # Cuda
     cudatoolkit
   ];
 
-  # Accept Nvidia license
+  # Accept license
   nixpkgs.config.nvidia.acceptLicense = true;
 }
