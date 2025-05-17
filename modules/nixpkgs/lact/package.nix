@@ -24,7 +24,7 @@ let
     owner = "oxalica";
     repo = "rust-overlay";
     rev = "master";
-    hash = "sha256-s33mQ2s5L/2nyllhRTywgECNZyCqyF4MJeM3vG/GaRo=";
+    hash = "sha256-veyXchTz6eWwvuW5X49UluHkheHkFcqHJSwGuKBhrmQ=";
   };
 
   pkgs = import <nixpkgs> {
