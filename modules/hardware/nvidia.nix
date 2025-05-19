@@ -49,9 +49,6 @@ in
     __GL_SHADER_DISK_CACHE_SIZE = "10737418240";
     __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
 
-    # libGLX.so.0 fix for vr
-    LD_LIBRARY_PATH = "/run/opengl-driver/lib";
-
     # Va-api and vdpau support
     LIBVA_DRIVER_NAME = "nvidia";
     VDPAU_DRIVER = "nvidia";
@@ -72,10 +69,8 @@ in
 
       # Opengl
       libglvnd
-      mesa
 
       # Vaapi
-      libva
       nvidia-vaapi-driver
       libva-vdpau-driver
 
@@ -85,9 +80,6 @@ in
 
       # Opencl
       ocl-icd
-
-      # Gstreamer
-      gst_all_1.gst-vaapi
     ];
   };
 
