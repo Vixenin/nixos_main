@@ -4,7 +4,6 @@
   # Steam proton & wayland tweaks
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "$HOME/.steam/root/compatibilitytools.d";
-    GAMESCOPE_WAYLAND_DISPLAY = "wayland-0";
   };
 
   programs = {
@@ -19,14 +18,10 @@
       };
     };
 
-    gamescope = {
-      enable = true;
-      capSysNice = false;
-    };
-
     steam = {
       enable = true;
-      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true
     };
   };
 }
