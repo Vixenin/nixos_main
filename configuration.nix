@@ -25,6 +25,7 @@
 
       # Services
       ./modules/services/flatpak.nix
+      ./modules/services/libratbag.nix
       ./modules/services/network.nix
       ./modules/services/printer.nix
       ./modules/services/system76-scheduler.nix
